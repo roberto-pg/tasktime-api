@@ -1,0 +1,36 @@
+version: "3"
+
+services: 
+
+  mongodb:
+    image: mongo:4.0.18-xenial
+    container_name: db-mongo
+    ports: 
+      - "27017:27017" 
+    restart: always
+    env_file: .env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$DB_ROOT
+      - MONGO_INITDB_ROOT_PASSWORD=$DB_PASS
+    volumes:  
+      - /home/rpg/Docker/db-mongo:/data/db   
+    networks: 
+      - backend
+       
+  app:
+    build: .
+    container_name: tasktime-server
+    ports:
+      - "3334:3334"
+    volumes: 
+      - .:/usr/app
+      - /home/rpg/Docker/nginx-server/html/imagens:/usr/app/public/images
+    command: yarn prod
+    restart: always
+    networks: 
+      - backend
+                   
+networks:
+  backend:
+    driver: bridge
+    
