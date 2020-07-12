@@ -27,6 +27,16 @@ router.get('/', authMiddleware, async (req, res) => {
     }
 });
 
+router.get('/:userId', authMiddleware, async (req, res) => {
+    try {
+        const user = await User.findById(req.params.userId);//.populate('user');
+
+        return res.send({ user });
+    } catch (err) {
+        return res.status(400).send({ error: 'Error loading user' });
+    }
+});
+
 router.post('/register', authMiddleware, async (req, res) => {
     const { email } = req.body;
 

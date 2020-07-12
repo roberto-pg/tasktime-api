@@ -24,7 +24,7 @@ services:
       - "3334:3334"
     volumes: 
       - .:/usr/app
-      - /home/rpg/Docker/nginx-server/html/imagens:/usr/app/public/images
+      - /home/rpg/Docker/nginx-server/html/imageNote:/usr/app/public/images
     command: yarn prod
     restart: always
     networks: 

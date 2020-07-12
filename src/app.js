@@ -10,7 +10,7 @@ require('dotenv/config');
 const userRoutes = require('../src/app/controllers/user');
 const noteRoutes = require('../src/app/controllers/noteController');
 
-var mongoDB = 'mongodb://172.27.0.3/dbnotes';
+var mongoDB = 'mongodb://172.30.0.3/dbnotes';
 mongoose.connect(mongoDB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
